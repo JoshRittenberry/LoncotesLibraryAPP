@@ -1,0 +1,16 @@
+.sub-menu {
+  display: flex;
+  align-items: center;
+}
+.sub-menu a {
+  margin-left: 4px;
+  align-self: center;
+}
+tr input {
+  width: 100%;
+  padding-left: 1%;
+  padding-right: 1%;
+}
+tr button {
+  margin-left: 1%;
+}
