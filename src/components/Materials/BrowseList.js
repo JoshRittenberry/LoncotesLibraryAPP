@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { Table } from "reactstrap";
-import { editMaterial, getMaterials } from "../../data/materialsData";
+import { getAvailableMaterials} from "../../data/materialsData";
 import { Link } from "react-router-dom";
 
-export default function MaterialList() {
+export default function BrowseList() {
   const [materials, setMaterials] = useState([]);
   const [reload, setReload] = useState(false)
 
   useEffect(() => {
-    getMaterials().then(materialsData => {
+    getAvailableMaterials().then(materialsData => {
       materialsData.sort((a, b) => a.id - b.id);
       setMaterials(materialsData);
     });
@@ -18,8 +18,7 @@ export default function MaterialList() {
   return (
     <div className="container">
       <div className="sub-menu bg-light">
-        <h4>Materials</h4>
-        <Link to="/materials/create">Add</Link>
+        <h4>Brose Available Materials</h4>
       </div>
       <Table>
         <thead>
@@ -29,7 +28,6 @@ export default function MaterialList() {
             <th>Type</th>
             <th>Genre</th>
             <th>Details</th>
-            <th>Circulation Status</th>
           </tr>
         </thead>
         <tbody>
@@ -42,20 +40,6 @@ export default function MaterialList() {
               <td>
                 <Link to={`${m.id}`}>Details</Link>
               </td>
-              {m.outOfCirculationSince == null && (
-                <td>
-                  <button onClick={() => {
-                    editMaterial(m).then(setReload(true))
-                  }}>Remove from Circulation</button>
-                </td>
-              )}
-              {m.outOfCirculationSince != null && (
-                <td>
-                  <button onClick={() => {
-                    editMaterial(m).then(setReload(true))
-                  }}>Return to Circulation</button>
-                </td>
-              )}
             </tr>
           ))}
         </tbody>
