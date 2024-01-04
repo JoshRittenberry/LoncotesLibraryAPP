@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { Table } from "reactstrap";
 import { Link } from "react-router-dom";
-import { editCheckout, getCheckouts } from "../../data/checkoutData";
+import { editCheckout, getCheckouts, getOverdueCheckouts } from "../../data/checkoutData";
 
-export default function CheckoutList() {
+export default function OverdueCheckoutList() {
     const [checkouts, setCheckouts] = useState([]);
     const [reload, setReload] = useState(false);
 
     useEffect(() => {
-        getCheckouts().then(checkoutsData => {
+        getOverdueCheckouts().then(checkoutsData => {
             checkoutsData.sort((a, b) => b.id - a.id);
             setCheckouts(checkoutsData);
         });

@@ -12,6 +12,8 @@ import PatronDetails from "./components/Patrons/PatronDetails";
 import PatronEdit from "./components/Patrons/PatronEdit";
 import CheckoutList from "./components/Checkouts/CheckoutList";
 import BrowseList from "./components/Materials/BrowseList";
+import { CheckoutMaterial } from "./components/Checkouts/CheckoutMaterial";
+import OverdueCheckoutList from "./components/Checkouts/OverdueCheckoutList";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -31,10 +33,12 @@ root.render(
         </Route>
         <Route path="checkouts">
           <Route index element={<CheckoutList />} />
+          <Route path=":id" element={<CheckoutMaterial />} />
+          <Route path="overdue" element={<OverdueCheckoutList />} />
         </Route>
       </Route>
     </Routes>
-  </BrowserRouter>,
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

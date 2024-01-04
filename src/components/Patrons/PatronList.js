@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Table } from "reactstrap";
+import { Table } from "reactstrap";
 import { editPatron, getPatrons } from "../../data/patronsData";
 import { Link } from "react-router-dom";
 
@@ -53,6 +53,14 @@ export default function PatronList() {
                                         p.isActive = !p.isActive
                                         editPatron(p).then(setReload(true))
                                     }}>Deactivate</button>
+                                </td>
+                            )}
+                            {!p.isActive && (
+                                <td>
+                                    <button onClick={() => {
+                                        p.isActive = !p.isActive
+                                        editPatron(p).then(setReload(true))
+                                    }}>Reactivate</button>
                                 </td>
                             )}
                         </tr>
